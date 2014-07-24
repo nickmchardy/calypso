@@ -1,0 +1,30 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>Calypso</h1>
+    <p class="lead">Calypso is music radio software reborn.</p>
+    <p><a href="http://asp.net" class="btn btn-primary btn-large">Learn more &raquo;</a></p>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Deck A</h2>
+        <p><audio id="deckA" preload="auto" controls src="http://boxor/library/Jazz/Roy Ayers/Evolution- The Polydor Anthology (disc 2)/09 - Roy Ayers - Heat of the Beat .mp3" /></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Deck B</h2>
+        <p><audio id="deckB" preload="auto" controls /></p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <h2>Search</h2>
+        <p>
+            <input type="search" id="tracksearch" autofocus value="poly">
+            <button onclick="searchTracks($('#tracksearch').val())">Search</button>
+        </p>
+    </div>
+</div>
+<div id="jsondiv"></div>

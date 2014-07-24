@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Calypso" Class="DataClassesDataContext" Serialization="Unidirectional" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=LOCALHOST;Initial Catalog=Calypso;User ID=calypso" SettingsObjectName="CalypsoMaint.Properties.Settings" SettingsPropertyName="CalypsoConnectionString1" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.ConfigSet" Member="ConfigSets">
+    <Type Name="ConfigSet">
+      <Column Name="ConfigSetId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="Status" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="BasePath" Type="System.String" DbType="NVarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="WebPath" Type="System.String" DbType="NVarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="LastLoaded" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="TimeTakenToLoad" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="FileCount" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="ErrorCount" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Association Name="ConfigSet_Track" Member="Tracks" ThisKey="ConfigSetId" OtherKey="ConfigSetId" Type="Track" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Track" Member="Tracks">
+    <Type Name="Track">
+      <Column Name="TrackId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Path" Type="System.String" DbType="NVarChar(400) NOT NULL" CanBeNull="false" />
+      <Column Name="WebPath" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="FileName" Type="System.String" DbType="NVarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="FileSize" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="FileType" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="ConfigSetId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LastUpdated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="FileStatus" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="Notes" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="Artist" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Title" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Album" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Year" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TrackNumber" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Genre" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="BPM" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="BPMAccuracyPct" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DurationSec" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="Bitrate" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Lossless" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="ReplayGainTrackGain" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="ReplayGainTrackPeak" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Association Name="ConfigSet_Track" Member="ConfigSet" ThisKey="ConfigSetId" OtherKey="ConfigSetId" Type="ConfigSet" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

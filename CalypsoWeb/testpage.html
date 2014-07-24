@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>caly.ps/o</title>
+</head>
+<body>
+    <div>Deck A</div>
+    <div>
+        <audio id="deckA" preload="auto" controls src="http://boxor/library/Jazz/Roy Ayers/Evolution- The Polydor Anthology (disc 2)/09 - Roy Ayers - Heat of the Beat .mp3" />
+    </div>
+    <div>Deck B</div>
+    <div>
+        <audio id="deckB" preload="auto" />
+    </div>
+    <div>Buttons</div>
+    <div>
+        <button onclick="document.getElementById('deckA').play()">Play A</button>
+        <button onclick="document.getElementById('deckB').play()">Play B</button>
+        <button onclick="document.getElementById('deckB').src = 'http://boxor/library/Jazz/Jean-Luc Ponty/1975 - Upon The Wings Of Music/04-Polyfolk Dance.mp3'">Set Track in B</button>
+        <button onclick="document.getElementById('deckB').volume += 0.1">Increase Volume on B</button>
+        <button onclick="document.getElementById('deckB').volume -= 0.1">Decrease Volume on B</button>
+    </div>
+	<div id="jsondiv">
+	</div>
+<!-- Placed js at the end of the document so the pages load faster -->
+<!--Core js-->
+<script src="Scripts/jquery-1.10.2.min.js"></script>
+<script>
+
+function replacer(key, value) {
+    if (typeof value === 'number' && !isFinite(value)) {
+        return String(value);
+    }
+    return value;
+}
+
+var keyword = 'poly';
+$.ajax({
+              type: "GET",
+              url: "http://boxor/api/tracks/search/"+keyword,
+              contentType:"application/json; charset=utf-8",
+              dataType:"json",
+              success: function(data) {
+                //clearInterval(interval);
+                var tmp = [];
+                $.each(data, function(key, value) {
+                  tmp.push(value);
+                });
+				//var myJSONText = JSON.stringify(data, replacer);
+				//alert(myJSONText);
+                //$('#progress').hide();
+                $('#jsondiv').html(tmp.join('<br>'));
+              },
+              error: function(data) {
+                //clearInterval(interval);
+                //$('#progress').hide();
+                alert('error');
+              }
+            });
+			
+$.getJSON("http://boxor/api/tracks/search/" + keyword, function (json) {
+    alert(json.result);
+    $.each(json.list, function (i, fb) {
+        alert(fb.result);
+    });
+});
+</script>
+</body>
+</html>
